@@ -1410,6 +1410,10 @@ class VirtualEnv(Env):
             "from ._typing import MYPY_CHECK_RUNNING, cast",
             "MYPY_CHECK_RUNNING = False\ncast = lambda type_, value: value",
         )
+        script = script.replace(
+            "from . import _manylinux, _musllinux",
+            "from pip._vendor.packaging import _manylinux, _musllinux",
+        )
 
         script += textwrap.dedent(
             """
